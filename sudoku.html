@@ -1,0 +1,330 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+
+<head>
+<title>Sudoku</title>
+<link href='http://fonts.googleapis.com/css?family=Signika+Negative:600' rel='stylesheet' type='text/css'>
+<style type="text/css">
+
+body{
+	background: #222;
+}
+
+#correct{
+	color: #fff;
+	width: 100%;
+	margin: 10px 0;
+	font-size: 16px;
+	line-height: 20px;
+	font-family:  'Signika Negative', sans-serif;
+}
+
+#correct .text{
+	float: left;
+	display: block;
+	width: 100%;
+}
+
+#correct a, #correct a:link, #correct a:visited
+{
+    display: block;
+    float: right;
+    font-size: 40px;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: #fff;
+}
+
+#correct a:hover
+{
+    color: #ffff00;
+}
+
+#container{
+	width: 700px;
+	margin: auto;
+	height: 500px;
+}
+
+#right{
+	width: 210px;
+	margin-top: 100px;
+	float: right;
+	text-align: left;
+}
+
+#PuzzleArea
+{
+float: left;
+width: 470px;
+/*width: 360px;
+height: 370px;*/
+}
+
+#Crossword {
+	background: #fff;
+	margin: auto;
+}
+
+input.cell {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	height: 45px;
+	width: 48px;
+	font-weight: bold;
+	font-size: 25px;
+	background-color: white;
+	color: #000;
+	line-height: 45px;
+}
+
+.corner td{
+	vertical-align: middle;
+	border:1px solid gray;
+	width: 48px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 25px;
+	text-align: center;
+}
+.corner{
+	float: left;
+	border:1px solid gray;
+}
+
+.corner td input{
+	height: 45px
+}
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+var solution = "7814159432364754273985869459648726918376894289756";
+var totalLetters = solution.length;
+
+$(document).ready(function() {
+	$('td.empty').append("<input type='text' maxlength='1' class='cell'></input>");
+});
+
+function check(){
+	var guess=[];
+	var numCorrect = 0;
+	$('.cell').each(function(){guess.push($(this).val());});
+
+	for (var x =0; x < guess.length; x++){
+		if(guess[x].toUpperCase() === solution[x].toUpperCase()){
+			numCorrect++;
+		}
+	}
+	if(numCorrect == totalLetters){
+		$("#correct .text").html("You've solved the puzzle! Press next to continue. ");
+		if($("#correct > a").length == 0)
+			$("#correct").append("<a href='frames/5.html'>Next &#187;</a>");
+	} else { 
+		$("#correct .text").html("Sorry, only " + numCorrect + " out of " + totalLetters + " of your numbers are right. ");
+	}
+}
+</script>
+
+</head>
+<body>
+<div id="container">
+				<div id="PuzzleArea">
+					<table id="Crossword" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td>
+								<table class="corner" border ="0" cellspacing='0'>
+									<tr>
+										<td id="1-1" class="blank">2</td>
+										<td id="1-2" class="empty"></td>
+										<td id="1-3" class="empty"></td>
+									</tr>	
+									<tr>
+										<td id="1-4" class="blank">5</td>
+										<td id="1-5" class="blank">9</td>
+										<td id="1-6" class="blank">6</td>
+									</tr>
+									<tr>	
+										<td id="1-7" class="blank">3</td>
+										<td id="1-8" class="empty"></td>
+										<td id="1-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="2-1" class="empty"></td>
+										<td id="2-2" class="empty"></td>
+										<td id="2-3" class="empty"></td>
+									</tr>	
+									<tr>
+										<td id="2-4" class="empty"></td>
+										<td id="2-5" class="blank">8</td>
+										<td id="2-6" class="empty"></td>
+									</tr>
+									<tr>	
+										<td id="2-7" class="blank">7</td>
+										<td id="2-8" class="empty"></td>
+										<td id="2-9" class="blank">6</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="3-1" class="empty"></td>
+										<td id="3-2" class="empty"></td>
+										<td id="3-3" class="empty"></td>
+									</tr>	
+									<tr>
+										<td id="3-4" class="blank">2</td>
+										<td id="3-5" class="blank">1</td>
+										<td id="3-6" class="empty"></td>
+									</tr>
+									<tr>	
+										<td id="3-7" class="blank">9</td>
+										<td id="3-8" class="blank">8</td>
+										<td id="3-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+						<tr/>
+						<tr>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="4-1" class="empty"></td>
+										<td id="4-2" class="empty"></td>
+										<td id="4-3" class="blank">1</td>
+									</tr>	
+									<tr>
+										<td id="5-4" class="empty"></td>
+										<td id="5-5" class="empty"></td>
+										<td id="5-6" class="empty"></td>
+									</tr>
+									<tr>	
+										<td id="6-7" class="empty"></td>
+										<td id="6-8" class="blank">6</td>
+										<td id="6-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="7-1" class="empty"></td>
+										<td id="7-2" class="empty"></td>
+										<td id="7-3" class="blank">7</td>
+									</tr>	
+									<tr>
+										<td id="8-4" class="blank">2</td>
+										<td id="8-5" class="blank">1</td>
+										<td id="8-6" class="blank">5</td>
+									</tr>
+									<tr>	
+										<td id="9-7" class="blank">3</td>
+										<td id="9-8" class="empty"></td>
+										<td id="9-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="2-1" class="empty"></td>
+										<td id="2-2" class="blank">3</td>
+										<td id="2-3" class="empty"></td>
+									</tr>	
+									<tr>
+										<td id="2-4" class="empty"></td>
+										<td id="2-5" class="empty"></td>
+										<td id="2-6" class="empty"></td>
+									</tr>
+									<tr>	
+										<td id="2-7" class="blank">1</td>
+										<td id="2-8" class="empty"></td>
+										<td id="2-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+						<tr/>
+						<tr>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="1-1" class="empty"></td>
+										<td id="1-2" class="blank">4</td>
+										<td id="1-3" class="blank">2</td>
+									</tr>	
+									<tr>
+										<td id="1-4" class="empty"></td>
+										<td id="1-5" class="blank">5</td>
+										<td id="1-6" class="blank">7</td>
+									</tr>
+									<tr>	
+										<td id="1-7" class="empty"></td>
+										<td id="1-8" class="empty"></td>
+										<td id="1-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="2-1" class="blank">5</td>
+										<td id="2-2" class="empty"></td>
+										<td id="2-3" class="blank">1</td>
+									</tr>	
+									<tr>
+										<td id="2-4" class="empty"></td>
+										<td id="2-5" class="blank">3</td>
+										<td id="2-6" class="empty"></td>
+									</tr>
+									<tr>	
+										<td id="2-7" class="empty"></td>
+										<td id="2-8" class="empty"></td>
+										<td id="2-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table class="corner" border ='0' cellspacing='0'>
+									<tr>
+										<td id="2-1" class="empty"></td>
+										<td id="2-2" class="empty"></td>
+										<td id="2-3" class="blank">3</td>
+									</tr>	
+									<tr>
+										<td id="2-4" class="blank">4</td>
+										<td id="2-5" class="blank">2</td>
+										<td id="2-6" class="blank">1</td>
+									</tr>
+									<tr>	
+										<td id="2-7" class="empty"></td>
+										<td id="2-8" class="empty"></td>
+										<td id="2-9" class="empty"></td>
+									</tr>
+								</table>
+							</td>
+						<tr/>							
+					</table>
+				</div>
+		<div id="right">
+			<button onclick="check()">Check Puzzle</button>
+			<div id="correct">
+				<span class="text">Matt's doing Sudoku! Let's see if you can help him solve this puzzle. </span>
+			</div>
+		</div>
+</div>
+</body>
+</html>
